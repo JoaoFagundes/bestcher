@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: postgres
+  password: password123
+  pool: 5
+
+development:
+  <<: *default
+  database: bestcher_development
+
+test:
+  <<: *default
+  database: bestcher_test
+
+production:
+  <<: *default
+  database: bestcher_production
+  username: bestcher
+  password: <%= ENV['BESTCHER_DATABASE_PASSWORD'] %>
