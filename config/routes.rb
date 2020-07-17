@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  scope module: :api do
+    namespace :v1 do
+      resources :orders, only: %i[create]
+      resource :order_status, only: %i[show]
+
+      resources :purchase_channel, only: %i[] do
+        resources :orders, only: %i[index], controller: "purchase_channel/orders"
+      end
+    end
+  end
 end
