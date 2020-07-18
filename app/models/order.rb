@@ -8,8 +8,8 @@ class Order < ApplicationRecord
   validates :address, presence: true
   validates :delivery_service, presence: true
   validates :total_value, presence: true, numericality: { greater_than: 0, only_integer: false }
-  validates :batch, presence: true, if: -> { !ready? }
-  validates :batch, absence: true, if: -> { ready? }
+  validates :batch, presence: true, if: -> { status.present? && !ready? }
+  validates :batch, absence: true, if: -> { status.present? && ready? }
 
   enum status: STATUSES
 end
