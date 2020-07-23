@@ -8,7 +8,10 @@ Rails.application.routes.draw do
         resources :orders, only: %i[index], controller: "purchase_channel/orders"
       end
 
-      resources :batches, only: %i[create update]
+      resources :batches, only: %i[create] do
+        resources :close, only: %i[create], controller: "batches/close"
+        resources :send, only: %i[create], controller: "batches/send"
+      end
 
       namespace :financial do
         resources :purchase_channel, only: %i[index]

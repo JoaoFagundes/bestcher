@@ -14,8 +14,6 @@ module API
         end
       end
 
-      def update; end
-
       private
 
       def batch_creator_service
