@@ -18,8 +18,17 @@ describe "V1 - Batches", type: :request do
 
     context "success" do
       let(:params) { { purchase_channel: CGI.escape("#{orders.sample.purchase_channel}") } }
+      let(:batch) { orders.sample.reload.batch }
 
       include_examples "correct status code and success status", :created, true
+
+      it "correct batch reference" do
+        expect(JSON.parse(response.body)["data"]["reference"]).to eq(batch.reference)
+      end
+
+      it "correct order count" do
+        expect(JSON.parse(response.body)["data"]["order_count"]).to eq(orders.size)
+      end
     end
 
     context "failure" do

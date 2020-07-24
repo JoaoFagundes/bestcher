@@ -2,9 +2,17 @@ module API
   module V1
     class BatchesController < ::ApplicationController
       def create
-        if batch_creator_service.call
+        batch = batch_creator_service.call
+
+        if batch.present?
           render status: :created,
-                 json: { success: true }
+                 json: {
+                   data: {
+                    reference: batch.reference,
+                    order_count: batch.orders.size
+                   },
+                   success: true
+                  }
         else
           render status: :unprocessable_entity,
                  json: {

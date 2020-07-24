@@ -14,14 +14,14 @@ module Batches
     def call
       call!
 
-      true
-    rescue ActiveRecord::RecordInvalid
+      batch
+    rescue ActiveRecord::RecordInvalid, ActiveModel::ValidationError
       false
     end
 
     def call!
       ActiveRecord::Base.transaction do
-        fail ActiveRecord::RecordInvalid, self unless valid?
+        validate!
 
         batch.save!
         orders.each { |order| order.update!(batch: batch, status: :production) }
