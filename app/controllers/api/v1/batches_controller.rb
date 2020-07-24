@@ -17,7 +17,7 @@ module API
       private
 
       def batch_creator_service
-        @batch_creator_service ||= Batches::Creator.new(params[:purchase_channel])
+        @batch_creator_service ||= ::Batches::Creator.new(params[:purchase_channel])
       end
     end
   end

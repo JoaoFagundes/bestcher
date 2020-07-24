@@ -1,9 +1,7 @@
 module API
   module V1
     module Batches
-      class SendController < ApplicationController
-        before_action :find_batch, only: %i[create]
-
+      class SendController < BaseController
         def create
           if @batch.present?
             if batch_status_updater_service.call
@@ -31,10 +29,6 @@ module API
           @batch_status_updater_service ||= ::Batches::StatusUpdater.new(@batch,
                                                                          :sent,
                                                                          delivery_service: params[:delivery_service])
-        end
-
-        def find_batch
-          @batch = Batch.find_by(reference: params[:batch_id])
         end
       end
     end
