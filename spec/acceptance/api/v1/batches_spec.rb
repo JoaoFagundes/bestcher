@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "V1 - Orders", type: :request do
+describe "V1 - Batches", type: :request do
   describe "create" do
     let!(:orders) { create_list :order, 3, purchase_channel: "Site BR" }
 

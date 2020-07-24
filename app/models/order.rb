@@ -12,4 +12,12 @@ class Order < ApplicationRecord
   validates :batch, absence: true, if: -> { status.present? && ready? }
 
   enum status: STATUSES
+
+  def next_status
+    case status.to_sym
+    when :ready; :production
+    when :production; :closing
+    when :closing; :sent
+    end
+  end
 end
