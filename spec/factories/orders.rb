@@ -5,7 +5,7 @@ FactoryBot.define do
     address { "Rua dos Bobos nº 0" }
     client { "São Clênio" }
     delivery_service { rand(99).even? ? "SEDEX" : "PAC" }
-    total_value { rand(49999) / 100.0 }
+    total_value { (rand(49999) / 100.0).to_d }
     line_items do
       [
         {
@@ -24,6 +24,6 @@ FactoryBot.define do
       ]
     end
 
-    status { :ready }
+    status { "ready" }
   end
 end
