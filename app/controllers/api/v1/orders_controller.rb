@@ -21,7 +21,7 @@ module API
       end
 
       def order_params
-        params.permit(:reference, :purchase_channel, :address, :delivery_service, :total_value, :line_items)
+        params.permit(:reference, :purchase_channel, :address, :delivery_service, :total_value, :line_items, :client)
               .merge(status: :ready)
       end
     end

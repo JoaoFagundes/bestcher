@@ -6,10 +6,14 @@ describe Order, type: :model do
 
     it { should validate_presence_of(:reference) }
     it { should validate_uniqueness_of(:reference).ignoring_case_sensitivity }
+    it { should validate_presence_of(:purchase_channel) }
+    it { should validate_presence_of(:client) }
     it { should validate_presence_of(:address) }
     it { should validate_presence_of(:delivery_service) }
     it { should validate_presence_of(:total_value) }
     it { should validate_numericality_of(:total_value).is_greater_than(0) }
+    it { should validate_presence_of(:line_items) }
+    it { should validate_presence_of(:status) }
     it { should define_enum_for(:status).with_values(%i[ready production closing sent]) }
 
     context "batch_id" do

@@ -22,12 +22,16 @@ describe "V1 - Orders", type: :request do
           client: "São Clênio",
           address: "Av. Amintas Barros Nº 3700 - Torre Business, Sala 702 - Lagoa Nova CEP: 59075-250",
           delivery_service: "SEDEX",
-          total_value: 123.30,
-          line_items: [{ "sku" => "case-my-best-friend" }]
+          total_value: 123.30.to_d,
+          line_items: { "sku" => "case-my-best-friend" }.to_json
         }
       end
 
       include_examples 'correct status code and success status', :created, true
+
+      it "order created should have params" do
+        expect(Order.last).to have_attributes(params.with_indifferent_access)
+      end
     end
 
     context "failure" do
