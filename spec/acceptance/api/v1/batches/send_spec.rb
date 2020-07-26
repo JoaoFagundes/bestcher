@@ -53,7 +53,7 @@ describe "V1 - Batches - Send", type: :request do
 
         include_examples "correct status code and success status", :unprocessable_entity, false
 
-        include_examples "correct error message", "Can't change from production to sent."
+        include_examples "correct error message", "Can't change status from production to sent."
       end
     end
   end

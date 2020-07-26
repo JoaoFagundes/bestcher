@@ -45,7 +45,7 @@ describe "V1 - Batches - Close", type: :request do
 
         include_examples "correct status code and success status", :unprocessable_entity, false
 
-        include_examples "correct error message", "Can't change from sent to closing."
+        include_examples "correct error message", "Can't change status from sent to closing."
       end
     end
   end

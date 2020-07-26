@@ -35,7 +35,7 @@ module Batches
     def orders
       @orders ||= begin
         orders = batch.orders
-        orders = orders.where(delivery_service: delivery_service) if delivery_service.present?
+        orders = orders.where(delivery_service: delivery_service) if delivery_service.present? && new_status == :sent
 
         orders
       end
@@ -44,7 +44,7 @@ module Batches
     def valid_new_status
       return if new_status == orders.take.next_status
 
-      errors.add(:base, "Can't change from #{orders.take.status} to #{new_status}.")
+      errors.add(:base, "Can't change status from #{orders.take.status} to #{new_status}.")
     end
   end
 end
