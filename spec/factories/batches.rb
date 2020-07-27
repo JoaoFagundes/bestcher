@@ -5,7 +5,7 @@ FactoryBot.define do
 
     trait :with_orders do
       after(:create) do |batch|
-        create_list :order, 3, status: :production, batch: batch
+        create_list :order, 3, status: :production, batch: batch, purchase_channel: batch.purchase_channel
       end
     end
   end

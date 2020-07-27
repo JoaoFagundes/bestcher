@@ -35,7 +35,7 @@ describe Batches::StatusUpdater do
   end
 
   context "from ready" do
-    before { batch.orders.each {|order| order.update_attribute(:status, :ready) } }
+    before { batch.orders.each { |order| order.update_attribute(:status, :ready) } }
 
     context "to production" do
       subject { described_class.new(batch, :production) }
@@ -119,7 +119,7 @@ describe Batches::StatusUpdater do
   end
 
   context "from closing" do
-    before { batch.orders.each {|order| order.update_attribute(:status, :closing) } }
+    before { batch.orders.each { |order| order.update_attribute(:status, :closing) } }
 
     context "to ready" do
       subject { described_class.new(batch, :ready) }
@@ -157,7 +157,7 @@ describe Batches::StatusUpdater do
   end
 
   context "from sent" do
-    before { batch.orders.each {|order| order.update_attribute(:status, :sent) } }
+    before { batch.orders.each { |order| order.update_attribute(:status, :sent) } }
 
     context "to ready" do
       subject { described_class.new(batch, :ready) }
