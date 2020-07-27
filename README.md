@@ -27,3 +27,15 @@ docker-compose run web rspec .
 ```
 rspec .
 ```
+
+## Aditional Stuff
+
+A few improvements were suggested as next steps for this project, and this is how I would implement it:
+
+- A security layer: The simplest way I know to achieve that is by using the Devise gem that simplifies a lot of authentication and security problems, and it's very commonly used in RoR projects
+
+- A permission layer: The `cancancan` gem is the [most downloaded gem](https://www.ruby-toolbox.com/categories/rails_authorization) for authorization and is quite simple to configure with its generated `Ability` class, providing simple helpers such as `can` and `cannot` which verify if a given user is able to execute a given action. Combined with the gem `rolify`, to add user roles in the application (such as admin, dev, support, etc), this can be a very powerful and simple solution.
+
+- Modify orders in production: A simple admin dashboard with *unlimited power* would be enough to fix these small cases, of course, combined with a strong permission layer such as the mentioned above, to guarantee that only the correct users will have access to this dashboard.
+
+- A Web UI: React is a framework that works very nicely when communicating to an API, using libraries such as Axios, although I believe that rails views, with some SCSS for styling and `.html.erb` files would be enough to implement an UI for this project given its simplicity
